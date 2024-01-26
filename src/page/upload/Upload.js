@@ -5,6 +5,10 @@ const Upload = () => {
   const [fileList, setFileList] = useState([]);
   const [fileSave, setFileSave] = useState([]);
   const [csvData, setCsvData] = useState([]);
+  const [saveTag, setSaveTag] = useState([{
+    id:'',
+    tag:[]
+  }]);
 
   const wrapperRef = useRef(null);
 
@@ -38,6 +42,11 @@ const Upload = () => {
     setFileSave([])
   };
 
+
+  const handleSelectTag = (getTag,id)=>{
+   setSaveTag((prev)=>[...prev,{tag:[...saveTag?.id,getTag],id}])
+  }
+console.log("savetag",saveTag)
   return (
     <div className='upload-wrap'>
       {/* <div className='upper-conatiner'> */}
@@ -111,7 +120,7 @@ const Upload = () => {
               <button disabled={fileList.length > 0 ? false : true} className='button-container' onClick={handleSubmit}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <g id="Icon">
-                    <path id="upload" d="M19.125 14.1923V16.9327C19.125 18.1435 18.1435 19.125 16.9327 19.125H7.06731C5.85653 19.125 4.875 18.1435 4.875 16.9327V14.1923M12 15.8365V4.875M12 4.875L8.71154 8.16346M12 4.875L15.2885 8.16346" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path id="upload" d="M19.125 14.1923V16.9327C19.125 18.1435 18.1435 19.125 16.9327 19.125H7.06731C5.85653 19.125 4.875 18.1435 4.875 16.9327V14.1923M12 15.8365V4.875M12 4.875L8.71154 8.16346M12 4.875L15.2885 8.16346" stroke="white" stroke-width="1.5" stroke-linecap="round" strokeLinejoin="round" />
                   </g>
                 </svg> Upload
               </button>
@@ -136,9 +145,10 @@ const Upload = () => {
                 <tr key={rowIndex}>
                   {Object.values(row).map((cell, cellIndex) => (
                     (cellIndex === 3) ?  <td key={cellIndex} className="border-b p-2">
-                     <select>
-                      {cell.split(',').map((e)=>
-                        <option>{e}</option>
+                     <select onChange={(e)=>handleSelectTag(e.target.value,row.id)}>
+                     <option disabled style={{display:"none"}}>Select Tag</option>
+                      {cell.split(',').map((tag)=>
+                        <option value={tag}>{tag}</option>
                       )}
                      </select>
                     </td>:
