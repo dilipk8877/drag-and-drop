@@ -135,6 +135,13 @@ const Upload = () => {
               {fileSave.map((row, rowIndex) => (
                 <tr key={rowIndex}>
                   {Object.values(row).map((cell, cellIndex) => (
+                    (cellIndex === 3) ?  <td key={cellIndex} className="border-b p-2">
+                     <select>
+                      {cell.split(',').map((e)=>
+                        <option>{e}</option>
+                      )}
+                     </select>
+                    </td>:
                     <td key={cellIndex} className="border-b p-2">
                       {cell}
                     </td>
