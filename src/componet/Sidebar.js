@@ -105,7 +105,7 @@ const Sidebar = ({ children }) => {
                 </div>
             </div>
             <div className='main-content'>
-                <Navbar/>
+                {/* <Navbar/> */}
                 {children}
             </div>
         </div>

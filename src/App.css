@@ -264,3 +264,16 @@
 .button-container:disabled svg {
   fill: #cccccc; /* Adjust SVG fill color for disabled state */
 }
+
+.button{
+  width: auto;
+  height: 30px;
+  background-color: #e82222;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+ border-radius: 8px;
+ margin-top: 7px;
+ padding: 5px;
+ padding-right: 5px;
+}
