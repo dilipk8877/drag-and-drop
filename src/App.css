@@ -187,6 +187,8 @@
 .lower-container{
   width: 1065px;
   height: 445px;
+  position: relative;
+  top: 75px;
 }
 .upload-wrap{
   height: 100%;
