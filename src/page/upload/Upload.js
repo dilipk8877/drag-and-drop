@@ -5,10 +5,7 @@ const Upload = () => {
   const [fileList, setFileList] = useState([]);
   const [fileSave, setFileSave] = useState([]);
   const [csvData, setCsvData] = useState([]);
-  const [saveTag, setSaveTag] = useState([{
-    id:'',
-    tag:[]
-  }]);
+  const [saveTag, setSaveTag] = useState([]);
 
   const wrapperRef = useRef(null);
 
@@ -44,9 +41,20 @@ const Upload = () => {
 
 
   const handleSelectTag = (getTag,id)=>{
-   setSaveTag((prev)=>[...prev,{tag:[...saveTag?.id,getTag],id}])
+    setSaveTag((prev)=>[...prev,{tag:getTag,id}])
   }
-console.log("savetag",saveTag)
+
+  const result = [];
+    const tagID = {};
+  
+    saveTag.forEach((item) => {
+      if (!tagID[item.id]) {
+        tagID[item.id] = { id: item.id, tag: [item.tag] };
+        result.push(tagID[item.id]);
+      } else {
+        tagID[item.id].tag.push(item.tag);
+      }
+    });
   return (
     <div className='upload-wrap'>
       {/* <div className='upper-conatiner'> */}
@@ -68,7 +76,7 @@ console.log("savetag",saveTag)
                   fill="none"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="28" viewBox="0 0 30 28" fill="none">
-                    <g clip-path="url(#clip0_22_2725)">
+                    <g clipPath="url(#clip0_22_2725)">
                       <path d="M18.7801 13.2998L6.95557 11.1998V26.7167C6.95557 27.4253 7.52638 27.9998 8.23053 27.9998H28.6341C29.3382 27.9998 29.9091 27.4253 29.9091 26.7167V20.9998L18.7801 13.2998Z" fill="#185C37" />
                       <path d="M18.7802 0H8.23059C7.52644 0 6.95563 0.57446 6.95563 1.2831V7L18.7802 14L25.0402 16.1L29.9091 14V7L18.7802 0Z" fill="#21A366" />
                       <path d="M6.95563 7H18.7802V14H6.95563V7Z" fill="#107C41" />
@@ -83,9 +91,9 @@ console.log("savetag",saveTag)
                     </g>
                     <defs>
                       <linearGradient id="paint0_linear_22_2725" x1="2.65832" y1="5.29766" x2="12.7396" y2="22.6473" gradientUnits="userSpaceOnUse">
-                        <stop stop-color="#18884F" />
-                        <stop offset="0.5" stop-color="#117E43" />
-                        <stop offset="1" stop-color="#0B6631" />
+                        <stop stopColor="#18884F" />
+                        <stop offset="0.5" stopColor="#117E43" />
+                        <stop offset="1" stopColor="#0B6631" />
                       </linearGradient>
                       <clipPath id="clip0_22_2725">
                         <rect width="29.9091" height="28" fill="white" />
@@ -120,7 +128,7 @@ console.log("savetag",saveTag)
               <button disabled={fileList.length > 0 ? false : true} className='button-container' onClick={handleSubmit}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <g id="Icon">
-                    <path id="upload" d="M19.125 14.1923V16.9327C19.125 18.1435 18.1435 19.125 16.9327 19.125H7.06731C5.85653 19.125 4.875 18.1435 4.875 16.9327V14.1923M12 15.8365V4.875M12 4.875L8.71154 8.16346M12 4.875L15.2885 8.16346" stroke="white" stroke-width="1.5" stroke-linecap="round" strokeLinejoin="round" />
+                    <path id="upload" d="M19.125 14.1923V16.9327C19.125 18.1435 18.1435 19.125 16.9327 19.125H7.06731C5.85653 19.125 4.875 18.1435 4.875 16.9327V14.1923M12 15.8365V4.875M12 4.875L8.71154 8.16346M12 4.875L15.2885 8.16346" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                   </g>
                 </svg> Upload
               </button>
@@ -145,13 +153,14 @@ console.log("savetag",saveTag)
                 <tr key={rowIndex}>
                   {Object.values(row).map((cell, cellIndex) => (
                     (cellIndex === 3) ?  <td key={cellIndex} className="border-b p-2">
-                     <select onChange={(e)=>handleSelectTag(e.target.value,row.id)}>
-                     <option disabled style={{display:"none"}}>Select Tag</option>
+                     <select onChange={(e)=>handleSelectTag(e.target.value,row.id)} key={cellIndex}>
+                     <option disabled style={{display:"none"}} value="">Select Tag</option>
                       {cell.split(',').map((tag)=>
-                        <option value={tag}>{tag}</option>
+                        <option key={tag} value={tag}>{tag}</option>
                       )}
                      </select>
                     </td>:
+                    
                     <td key={cellIndex} className="border-b p-2">
                       {cell}
                     </td>
