@@ -1,38 +1,264 @@
-.App {
-  text-align: center;
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.login-page {
+  position: relative;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.blue-background {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 719.99px;
+  height: 100vh;
+  background-color: #605BFF;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.blue-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -39px;
+  left: 0;
+  bottom: 0px;
+  width: 719.99px;
+  background-color: #605BFF;
+  transform-origin: bottom right;
+  transform: skew(-5deg);
+  z-index: -1;
+}
+
+
+
+.base-container {
+  position: absolute;
+  width: 205px;
+  height: 88px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.base-text {
+  font: Montserrat;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 88px;
+  color: #fff;
+}
+
+.logo-ellipse {
+  position: relative;
+  width: 80.15px;
+  height: 80.15px;
+  top: 54.32px;
+  left: 61.03px;
+  z-index: 1;
+}
+
+.logo-vector {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 82.82px;
+  height: 22.04px;
+  top: 83.71px;
+  left: 59.03px;
+  border: 6px;
+
+}
+
+.social-icon-wrap {
+  position: absolute;
   display: flex;
-  flex-direction: column;
+  width: 299px;
+  height: 48px;
+  bottom: 20px;
+  left: 144.5px;
+  justify-content: space-between;
+}
+.social-icon{
+  width: 42px;
+  height: 41px;
+  color:#ffffff
+}
+
+.white-background {
+  width: 1440px;
+  height: 1024px;
+  flex-shrink: 0;
+  background-color: #F8FAFF;
+} */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.login-page {
+  display: flex;
+  width: 1440px;
+  height: 1024px;
+  background-color: #F8FAFF;
+}
+
+.blue-background {
+  width: 719.99px;
+  height: 1024px;
+  background-color: #605BFF;
+}
+
+
+.sidebar-wrap {
+  background-color: #fff;
+  width: 218px;
+  height: 1047px;
+  flex-shrink: 0;
+}
+
+.sidebar-base {
+  top: 55px;
+  left: 113px;
+  width: 54px;
+  height: 33px;
+  color: #030229;
+  font-family: Nunito;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.sidebar-text {
+  /* font-family: Nunito; */
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #9A9AA9;
+}
+
+.text-hover:hover svg {
+  fill: #605BFF;
+}
+
+.text-hover:hover .sidebar-text {
+  color: #605BFF;
+}
+
+
+.navbar {
+  width: Fixed (1052px);
+  height: auto;
+  gap: 630px;
+  display: flex;
+  justify-content: space-around;
   align-items: center;
+}
+
+.profile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.profile-section {
+  display: flex;
+  gap: 27.61px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.main-content {
+  background-color: #FAFAFB;
+  width: 100%;
+}
+
+/* .upper-conatiner{
+  height: calc(100%-800px);
+} */
+.lower-container{
+  width: 1065px;
+  height: 445px;
+}
+.upload-wrap{
+  height: 100%;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+.upload-container {
+  position: absolute;
+  top: 218px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  width: 596px;
+  height: 367px;
+  border-radius: 8px;
+  padding: 16px;
 }
 
-.App-link {
-  color: #61dafb;
+.input-container {
+  position: relative;
+  background-color: #ffffff;
+  width: 564px;
+  height: 258px;
+  border-radius: 8px;
+  border: 1px dotted #9A9AA9;
+  display: flex;
+  flex-direction: column; /* Updated: Use flex-direction: column */
+  justify-content: center;
+  align-items: center;
+}
+.input-field {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.drop-file-input__label {
+  text-align: center;
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  width: 267px;
+  height: 76px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+
+}
+
+.button-container {
+  background-color: #605BFF;
+  width: 564px;
+  height: 56px;
+  margin-top: 21px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+}
+
+.button-container:disabled {
+  background-color: #A9A9A9; /* Change background color for disabled state */
+  cursor: not-allowed; /* Change cursor for disabled state */
+  opacity: 0.7; /* Add some transparency to indicate it's disabled */
+}
+
+.button-container:disabled svg {
+  fill: #cccccc; /* Adjust SVG fill color for disabled state */
 }

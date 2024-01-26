@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Login from './page/login/Login'
+import "./App.css"
+import Dashboard from './page/dashboard/Dashboard'
+import { Route, Routes } from 'react-router-dom'
+import Upload from './page/upload/Upload'
+import Invoice from './page/Invoice/Invoice'
+import Schedule from './page/schedule/Schedule'
+import Calendar from './page/calendar/Calendar'
+import Notification from './page/notification/Notification'
+import Setting from './page/setting/Setting'
+import Home from './page/home/Home'
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  //  <Login/>
+  // <Dashboard/>
+  <>
+  <Routes>
+    <Route path='/' element={<Dashboard/>} >
+    <Route path='/' element={<Home/>} />
+    <Route path='/upload' element={<Upload/>} />
+    <Route path='/invoice' element={<Invoice/>} />
+    <Route path='/schedule' element={<Schedule/>} />
+    <Route path='/calendar' element={<Calendar/>} />
+    <Route path='/notification' element={<Notification/>} />
+    <Route path='/setting' element={<Setting/>} />
+    </Route>
+  </Routes>
+  </>
+  )
 }
 
-export default App;
+export default App
